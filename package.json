@@ -5,6 +5,7 @@
   "source": "src/index.html",
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "start": "parcel"
   },
   "jest": {
