@@ -24,7 +24,6 @@
   "homepage": "https://github.com/wvmitchell/fp-ideabox#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
-    "babel-jest": "^29.3.1",
     "jest": "^29.3.1",
     "parcel": "^2.8.0"
   }
