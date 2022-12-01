@@ -1,0 +1,31 @@
+{
+  "name": "fp-ideabox",
+  "version": "1.0.0",
+  "description": "A ideabox attempt using functional design principles",
+  "source": "src/index.html",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wvmitchell/fp-ideabox.git"
+  },
+  "author": "wvmitchell@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wvmitchell/fp-ideabox/issues"
+  },
+  "homepage": "https://github.com/wvmitchell/fp-ideabox#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "parcel": "^2.8.0"
+  }
+}
