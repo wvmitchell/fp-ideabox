@@ -9,7 +9,7 @@ const startApp = () => {
 
   const deleteIdea = (id) => {
     ideas = ideas.filter(idea => {
-      return idea.getId() !== id
+      return idea.getId() != id
     })
   }
 

@@ -20,8 +20,8 @@ const addIdea = event => {
   const body = bodyInput.value
 
   app.addIdea({title, body})
-  const ideas = app.getIdeas()
 
+  const ideas = app.getIdeas()
   erase(ideaDisplay)
   drawIdeas(...makeIdeaElements(ideas))
 }
@@ -33,12 +33,23 @@ const handleIdeaAction = event => {
   switch(use) {
     case 'favorite':
       favoriteIdea(id)
+      break;
+    case 'delete':
+      deleteIdea(id)
+      break;
   }
 }
 
 // Event Action Helpers
 const favoriteIdea = (id) => {
   app.toggleStarred(id)
+  const ideas = app.getIdeas()
+  erase(ideaDisplay)
+  drawIdeas(...makeIdeaElements(ideas))
+}
+
+deleteIdea = (id) => {
+  app.deleteIdea(id)
   const ideas = app.getIdeas()
   erase(ideaDisplay)
   drawIdeas(...makeIdeaElements(ideas))

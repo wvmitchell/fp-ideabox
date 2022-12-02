@@ -36,6 +36,7 @@ const makeHeader = (idea) => {
 
   const menuClose = document.createElement('img')
   menuClose.classList.add('close')
+  menuClose.setAttribute('data-use', 'delete')
   menuClose.setAttribute('data-id', idea.getId())
 
   header.append(star, menuClose)

@@ -99,9 +99,11 @@ describe('makeIdeaElement', () => {
     const ideaHeader = ideaElement.children[0]
     const closeBtn = ideaHeader.lastElementChild
     const dataId = closeBtn.attributes.getNamedItem('data-id').value
+    const dataUse = closeBtn.attributes.getNamedItem('data-use').value
 
     expect(closeBtn.classList).toContainEqual('close')
     expect(dataId).toBeTruthy()
+    expect(dataUse).toEqual('delete')
   })
 
   test('it should contain a body', () => {
