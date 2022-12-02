@@ -20,10 +20,7 @@ const addIdea = event => {
   const body = bodyInput.value
 
   app.addIdea({title, body})
-
-  const ideas = app.getIdeas()
-  erase(ideaDisplay)
-  drawIdeas(...makeIdeaElements(ideas))
+  updatePage()
 }
 
 const handleIdeaAction = event => {
@@ -43,13 +40,15 @@ const handleIdeaAction = event => {
 // Event Action Helpers
 const favoriteIdea = (id) => {
   app.toggleStarred(id)
-  const ideas = app.getIdeas()
-  erase(ideaDisplay)
-  drawIdeas(...makeIdeaElements(ideas))
+  updatePage()
 }
 
 deleteIdea = (id) => {
   app.deleteIdea(id)
+  updatePage()
+}
+
+updatePage = () => {
   const ideas = app.getIdeas()
   erase(ideaDisplay)
   drawIdeas(...makeIdeaElements(ideas))
