@@ -26,5 +26,24 @@ const addIdea = event => {
   drawIdeas(...makeIdeaElements(ideas))
 }
 
+const handleIdeaAction = event => {
+  const { use, id } = event.target.dataset
+  if(!use && !id) return
+
+  switch(use) {
+    case 'favorite':
+      favoriteIdea(id)
+  }
+}
+
+// Event Action Helpers
+const favoriteIdea = (id) => {
+  app.toggleStarred(id)
+  const ideas = app.getIdeas()
+  erase(ideaDisplay)
+  drawIdeas(...makeIdeaElements(ideas))
+}
+
 // Event Listeners
 saveButton.addEventListener('click', addIdea)
+ideaDisplay.addEventListener('click', handleIdeaAction)

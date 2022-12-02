@@ -31,6 +31,7 @@ const makeHeader = (idea) => {
   const star = document.createElement('img')
   const classes = idea.getStarred() ? ['star', 'active'] : ['star']
   star.classList.add(...classes)
+  star.setAttribute('data-use', 'favorite')
   star.setAttribute('data-id', idea.getId())
 
   const menuClose = document.createElement('img')

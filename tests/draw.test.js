@@ -79,15 +79,17 @@ describe('makeIdeaElement', () => {
     expect(star.classList).toContainEqual('active')
   })
 
-  test('the header star should have a data-id', () => {
+  test('the header star should have the right attributes', () => {
     const idea = ideaGenerator({title: 'Hello', body: 'World'})
     idea.toggleStarred()
     const ideaElement = makeIdeaElement(idea)
     const ideaHeader = ideaElement.children[0]
     const star = ideaHeader.children[0]
     const dataId = star.attributes.getNamedItem('data-id').value
+    const dataUse = star.attributes.getNamedItem('data-use').value
 
     expect(dataId).toBeTruthy()
+    expect(dataUse).toBe('favorite')
   })
 
   test('the header should have a close button', () => {

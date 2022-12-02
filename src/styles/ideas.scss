@@ -30,6 +30,10 @@
 
     &.star {
       content: url('../assets/star.svg');
+
+      &.active {
+        content: url('../assets/star-active.svg');
+      }
     }
 
     &.close {
