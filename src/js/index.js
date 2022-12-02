@@ -29,25 +29,17 @@ const handleIdeaAction = event => {
 
   switch(use) {
     case 'favorite':
-      favoriteIdea(id)
+      app.toggleStarred(id)
       break;
     case 'delete':
-      deleteIdea(id)
+      app.deleteIdea(id)
       break;
   }
+
+  updatePage()
 }
 
 // Event Action Helpers
-const favoriteIdea = (id) => {
-  app.toggleStarred(id)
-  updatePage()
-}
-
-deleteIdea = (id) => {
-  app.deleteIdea(id)
-  updatePage()
-}
-
 updatePage = () => {
   const ideas = app.getIdeas()
   erase(ideaDisplay)
