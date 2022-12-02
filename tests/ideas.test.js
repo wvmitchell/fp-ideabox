@@ -29,7 +29,7 @@ describe('ideaGenerator', () => {
 
   test('it can update the starred status', () => {
     const idea = ideaGenerator()
-    idea.setStarred(true)
+    idea.toggleStarred()
 
     expect(idea.getStarred()).toBe(true)
   })

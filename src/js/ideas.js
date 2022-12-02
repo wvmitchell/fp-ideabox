@@ -7,7 +7,7 @@ const ideaGenerator = (ideaDetails={}) => {
     getTitle: () => ideaDetails.title,
     getBody: () => ideaDetails.body,
     getStarred: () => starred,
-    setStarred: (status) => starred = status,
+    toggleStarred: () => starred = !starred,
   }
 }
 
