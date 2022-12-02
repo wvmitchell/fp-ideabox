@@ -1,4 +1,4 @@
-import { ideaGenerator } from '../src/ideas'
+import { ideaGenerator } from '../src/js/ideas'
 
 describe('ideaGenerator', () => {
   test('it should add a title', () => {
