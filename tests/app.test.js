@@ -79,4 +79,21 @@ describe('app', () => {
     app.toggleFiltered()
     expect(app.getFilterStatus()).toBe(true)
   })
+
+  test('it should be able to return ideas based on search', () => {
+    const app = startApp()
+    const details = {
+      title: 'Some title',
+      body: 'Somebody'
+    }
+    app.addIdea(details)
+    app.addIdea({...details, body: "else"})
+    app.addIdea({...details, body: "other"})
+
+    app.setSearch('else')
+    const searchedIdeas = app.getIdeas()
+
+    expect(searchedIdeas.length).toBe(1)
+    expect(searchedIdeas[0].getBody()).toBe('else')
+  })
 })

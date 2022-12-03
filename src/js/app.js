@@ -1,9 +1,13 @@
+import { pipe } from 'ramda'
 import { ideaGenerator } from './ideas.js'
+import { search as searchByTerm } from './search.js'
 
 const startApp = () => {
   let ideas = []
   let showFiltered = false
+  let searchTerm = ''
 
+  // interface functions
   const addIdea = (ideaDetails) => {
     ideas = [...ideas, ideaGenerator(ideaDetails)]
   }
@@ -15,10 +19,10 @@ const startApp = () => {
   }
 
   const getIdeas = () => {
-    if(showFiltered) {
-      return ideas.filter(idea => idea.getStarred())
-    }
-    return ideas
+    return pipe(
+      findByFilter(showFiltered),
+      searchByTerm(searchTerm),
+    )(ideas)
   }
 
   const toggleStarred = (id) => {
@@ -38,6 +42,18 @@ const startApp = () => {
     return showFiltered
   }
 
+  const setSearch = (term) => {
+    searchTerm = term
+  }
+
+  // helper functions
+  const findByFilter = (filterStatus) => (ideas) => {
+    if(filterStatus) {
+      return ideas.filter(idea => idea.getStarred())
+    }
+    return ideas
+  }
+
   return {
     addIdea,
     deleteIdea,
@@ -45,6 +61,7 @@ const startApp = () => {
     toggleStarred,
     toggleFiltered,
     getFilterStatus,
+    setSearch,
   }
 }
 
