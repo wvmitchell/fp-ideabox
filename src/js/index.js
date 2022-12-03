@@ -20,6 +20,7 @@ const drawFitlerButton = draw(filterButton)
 const addIdea = () => {
   const title = titleInput.value
   const body = bodyInput.value
+  if(!title.length || !body.length) return
 
   app.addIdea({title, body})
   updatePage()
