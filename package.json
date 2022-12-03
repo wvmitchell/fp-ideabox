@@ -32,6 +32,7 @@
     "parcel": "^2.8.0"
   },
   "dependencies": {
+    "ramda": "^0.28.0",
     "uuid": "^9.0.0"
   }
 }
