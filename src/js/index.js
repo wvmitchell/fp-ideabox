@@ -50,6 +50,12 @@ const filterIdeas = () => {
   updatePage()
 }
 
+const searchIdeas = event => {
+  const searchTerm = event.target.value
+  app.setSearch(searchTerm)
+  updatePage()
+}
+
 // Event Action Helpers
 updatePage = () => {
   const ideas = app.getIdeas()
@@ -61,3 +67,4 @@ updatePage = () => {
 saveButton.addEventListener('click', addIdea)
 ideaDisplay.addEventListener('click', handleIdeaAction)
 filterButton.addEventListener('click', filterIdeas)
+searchField.addEventListener('input', searchIdeas)
