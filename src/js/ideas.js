@@ -1,5 +1,7 @@
+import { v4 as uuidv4 } from 'uuid'
+
 const ideaGenerator = (ideaDetails={}) => {
-  let id = Date.now();
+  let id = uuidv4()
   let starred = false;
 
   return { 
