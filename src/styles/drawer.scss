@@ -2,9 +2,9 @@
   background-color: #1F1F3D;
   height: 100%;
   width: 20%;
+  padding: 10px;
 
   h1 {
-    margin: 10px;
     font-family: "Open Sans";
     font-weight: bold;
     color: #E9E9F3;
@@ -15,18 +15,22 @@
     font-family: "Open Sans";
     font-weight: bold;
     font-size: 15px;
-    margin: 10px;
     color: #BFBFDD;
+    margin-bottom: 10px;
+  }
+
+  hr {
+    border-top: 1px solid #5356A4;
   }
 
   button {
     border-radius: 2px;
     background-color: #5356A4;
     height: 40px;
+    width: 100%;
     margin: 0 0 20px 0;
     font-family: "Open Sans";
     font-weight: bold;
     color: #E9E9F3;
-    margin: 10px;
   }
 }
