@@ -1,0 +1,32 @@
+#drawer {
+  background-color: #1F1F3D;
+  height: 100%;
+  width: 20%;
+
+  h1 {
+    margin: 10px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    color: #E9E9F3;
+    text-align: center;
+  }
+
+  h2 {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px;
+    color: #BFBFDD;
+  }
+
+  button {
+    border-radius: 2px;
+    background-color: #5356A4;
+    height: 40px;
+    margin: 0 0 20px 0;
+    font-family: "Open Sans";
+    font-weight: bold;
+    color: #E9E9F3;
+    margin: 10px;
+  }
+}
