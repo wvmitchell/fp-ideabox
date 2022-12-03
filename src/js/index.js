@@ -9,13 +9,15 @@ const titleInput = document.getElementById('title')
 const bodyInput = document.getElementById('body')
 const saveButton = document.getElementById('save')
 const searchField = document.getElementById('search')
+const filterButton = document.getElementById('filter')
 const ideaDisplay = document.getElementById('idea-display')
 
 // Drawing Functions
 const drawIdeas = draw(ideaDisplay)
+const drawFitlerButton = draw(filterButton)
 
 // Event Actions
-const addIdea = event => {
+const addIdea = () => {
   const title = titleInput.value
   const body = bodyInput.value
 
@@ -39,6 +41,14 @@ const handleIdeaAction = event => {
   updatePage()
 }
 
+const filterIdeas = () => {
+  app.toggleFiltered()
+  const btnText = app.getFilterStatus() ? "Show All" : "Show Starred"
+  erase(filterButton)
+  drawFitlerButton(btnText)
+  updatePage()
+}
+
 // Event Action Helpers
 updatePage = () => {
   const ideas = app.getIdeas()
@@ -49,3 +59,4 @@ updatePage = () => {
 // Event Listeners
 saveButton.addEventListener('click', addIdea)
 ideaDisplay.addEventListener('click', handleIdeaAction)
+filterButton.addEventListener('click', filterIdeas)

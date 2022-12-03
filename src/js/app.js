@@ -2,6 +2,7 @@ import { ideaGenerator } from './ideas.js'
 
 const startApp = () => {
   let ideas = []
+  let showFiltered = false
 
   const addIdea = (ideaDetails) => {
     ideas = [...ideas, ideaGenerator(ideaDetails)]
@@ -13,6 +14,13 @@ const startApp = () => {
     })
   }
 
+  const getIdeas = () => {
+    if(showFiltered) {
+      return ideas.filter(idea => idea.getStarred())
+    }
+    return ideas
+  }
+
   const toggleStarred = (id) => {
     ideas = ideas.map(idea => {
       if(idea.getId() == id) {
@@ -22,13 +30,21 @@ const startApp = () => {
     })
   }
 
-  const getIdeas = () => ideas
+  const toggleFiltered = () => {
+    showFiltered = !showFiltered
+  }
+
+  const getFilterStatus = () => {
+    return showFiltered
+  }
 
   return {
     addIdea,
     deleteIdea,
     getIdeas,
     toggleStarred,
+    toggleFiltered,
+    getFilterStatus,
   }
 }
 

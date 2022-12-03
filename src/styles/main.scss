@@ -9,13 +9,6 @@ h1, h2, h2, h4, h5, h6, p {
   padding: 0;
 }
 
-h1 {
-  font-family: "Open Sans";
-  font-weight: bold;
-  color: #E9E9F3;
-  text-align: center;
-}
-
 body {
   display: flex;
   flex-direction: row;
@@ -25,6 +18,33 @@ body {
   background-color: #1F1F3D;
   height: 100%;
   width: 20%;
+
+  h1 {
+    margin: 10px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    color: #E9E9F3;
+    text-align: center;
+  }
+
+  h2 {
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px;
+    color: #BFBFDD;
+  }
+
+  button {
+    border-radius: 2px;
+    background-color: #5356A4;
+    height: 40px;
+    margin: 0 0 20px 0;
+    font-family: "Open Sans";
+    font-weight: bold;
+    color: #E9E9F3;
+    margin: 10px;
+  }
 }
 
 #main {
@@ -47,6 +67,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 30%;
+  height: 100%;
+  padding-top: 10px;
 
   label {
     font-family: "Open Sans";
@@ -57,6 +79,10 @@ body {
     border: 1px solid #1F1F3D;
     border-radius: 2px;
     margin: 0 0 20px 0;
+    font-family: "Open Sans";
+    font-weight: bold;
+    color: #1F1F3D;
+    padding: 5px;
   }
 
   input {
