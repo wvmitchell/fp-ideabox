@@ -68,3 +68,6 @@ saveButton.addEventListener('click', addIdea)
 ideaDisplay.addEventListener('click', handleIdeaAction)
 filterButton.addEventListener('click', filterIdeas)
 searchField.addEventListener('input', searchIdeas)
+
+// Page initialization
+window.onload = updatePage
