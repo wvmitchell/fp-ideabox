@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
 
 const ideaGenerator = (ideaDetails={}) => {
-  let id = uuidv4()
-  let starred = false;
+  let id = ideaDetails.id || uuidv4()
+  let starred = ideaDetails.starred || false;
 
   return { 
     getId: () => id,

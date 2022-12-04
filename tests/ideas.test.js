@@ -33,4 +33,16 @@ describe('ideaGenerator', () => {
 
     expect(idea.getStarred()).toBe(true)
   })
+
+  test('it can create an idea with a preset id', () => {
+    const idea = ideaGenerator({id: '10'})
+
+    expect(idea.getId()).toBe('10')
+  })
+
+  test('it can create an idea with a preset starred status', () => {
+    const idea = ideaGenerator({starred: true})
+
+    expect(idea.getStarred()).toBe(true)
+  })
 })
