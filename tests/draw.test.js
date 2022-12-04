@@ -1,4 +1,11 @@
-import { draw, erase, makeIdeaElement, makeIdeaElements } from '../src/js/draw.js'
+import { 
+  draw, 
+  erase, 
+  makeIdeaElement, 
+  makeIdeaElements,
+  makeSearchTag,
+  makeSearchTags,
+} from '../src/js/draw.js'
 import { ideaGenerator } from '../src/js/ideas.js'
 
 describe('draw', () => {
@@ -138,7 +145,7 @@ describe('makeIdeaElements', () => {
     expect(ideaElements).toEqual([])
   })
 
-  test('it should take in an array and return one elements', () => {
+  test('it should take in an array and return idea elements', () => {
     const ideaOne = ideaGenerator({title: 'Hello', body: 'World'})
     const ideaTwo = ideaGenerator({title: 'Hello', body: 'Universe'})
     const ideas = [ideaOne, ideaTwo]
@@ -147,6 +154,40 @@ describe('makeIdeaElements', () => {
     expect(ideaElements.length).toBe(ideas.length)
     ideaElements.forEach(ideaElement => {
       expect(ideaElement.classList).toContainEqual('idea')
+    })
+  })
+})
+
+describe('makeSearchTag', () => {
+  test('it should return a dom element', () => {
+    const searchTagElement = makeSearchTag('search term')
+
+    expect(searchTagElement.classList).toContainEqual('search-tag')
+  })
+
+  test('it should return a tag with text and image', () => {
+    const searchTerm = 'some term'
+    const searchTagElement = makeSearchTag(searchTerm)
+
+    const text = searchTagElement.children[0]
+    const img = searchTagElement.children[1]
+    const dataUse = img.attributes.getNamedItem('data-use').value
+    const dataTag = img.attributes.getNamedItem('data-tag').value
+
+    expect(text.innerHTML).toBe(searchTerm)
+    expect(img.classList).toContainEqual('remove-tag')
+    expect(dataUse).toBe('remove tag')
+    expect(dataTag).toBe('some term')
+  })
+})
+
+describe('makeSearchTags', () => {
+  test('it should take in terms and return an arr of elements', () => {
+    const terms = ['this', 'that', 'other']
+    const tags = makeSearchTags(terms)
+
+    tags.forEach(tag => {
+      expect(tag.classList).toContainEqual('search-tag')
     })
   })
 })

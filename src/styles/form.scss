@@ -2,7 +2,7 @@
   background-color: #A9AAD2;
   display: flex;
   flex-direction: row;
-  height: 40%;
+  height: 45%;
   justify-content: center;
   align-items: center;
 }
@@ -62,6 +62,7 @@
     background-color: #5356A4;
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 
     img {
       height: 20px;
@@ -76,6 +77,34 @@
       border: 0;
       width: 100%;
       height: 30px;
+    }
+  }
+
+  #search-tags {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+
+    .search-tag {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      font-family: "Open Sans";
+      font-weight: light;
+      font-size: 15px;
+      background-color: #5356A4;
+      color: #E9E9F3;
+      margin: 5px;
+      padding: 3px;
+      border-radius: 5px;
+
+      img {
+        height: 10px;
+        margin: 0 0 0 5px;
+        content: url('../assets/menu-close.svg');
+      }
     }
   }
 }

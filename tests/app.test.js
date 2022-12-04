@@ -1,6 +1,10 @@
 import startApp from '../src/js/app'
 
 describe('app', () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
+
   test('it should not have any ideas initally', () => {
     const app = startApp()
     const ideas = app.getIdeas()
@@ -91,6 +95,72 @@ describe('app', () => {
     app.addIdea({...details, body: "other"})
 
     app.setSearch('else')
+    const searchedIdeas = app.getIdeas()
+
+    expect(searchedIdeas.length).toBe(1)
+    expect(searchedIdeas[0].getBody()).toBe('else')
+  })
+
+  test('it should be able to get search terms', () => {
+    const app = startApp()
+
+    const terms = app.getSearchTerms()
+
+    expect(terms).toEqual([])
+  })
+
+  test('it should be able to add a search term', () => {
+    const app = startApp()
+    const term = 'test'
+    app.addSearchTerm(term)
+
+    const terms = app.getSearchTerms()
+
+    expect(terms).toEqual(['test'])
+  })
+
+  test('it should not be able to add the same term', () => {
+    const app = startApp()
+    const term = 'test'
+    app.addSearchTerm(term)
+    app.addSearchTerm(term)
+
+    const terms = app.getSearchTerms()
+
+    expect(terms).toEqual(['test'])
+  })
+
+  test('it should be able to remove a term', () => {
+    const app = startApp()
+    const term = 'test'
+    app.addSearchTerm(term)
+    app.removeSearchTerm(term)
+
+    const terms = app.getSearchTerms()
+
+    expect(terms).toEqual([])
+  })
+
+  test('terms should be case insensitive', () => {
+    const app = startApp()
+    const term = 'TeSt'
+
+    app.addSearchTerm(term)
+    const terms = app.getSearchTerms()
+
+    expect(terms).toEqual(['test'])
+  })
+
+  test('it should be able to return ideas based on terms', () => {
+    const app = startApp()
+    const details = {
+      title: 'Some title',
+      body: 'Somebody'
+    }
+    app.addIdea(details)
+    app.addIdea({...details, body: "else"})
+    app.addIdea({...details, body: "other"})
+    app.addSearchTerm('else')
     const searchedIdeas = app.getIdeas()
 
     expect(searchedIdeas.length).toBe(1)

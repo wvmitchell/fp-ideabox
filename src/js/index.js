@@ -1,5 +1,10 @@
 import startApp from './app.js'
-import { draw, erase, makeIdeaElements } from './draw.js'
+import { 
+  draw, 
+  erase, 
+  makeIdeaElements,
+  makeSearchTags,
+} from './draw.js'
 
 // Business Logic
 const app = startApp()
@@ -9,12 +14,14 @@ const titleInput = document.getElementById('title')
 const bodyInput = document.getElementById('body')
 const saveButton = document.getElementById('save')
 const searchField = document.getElementById('search')
+const searchTagsDisplay = document.getElementById('search-tags')
 const filterButton = document.getElementById('filter')
 const ideaDisplay = document.getElementById('idea-display')
 
 // Drawing Functions
 const drawIdeas = draw(ideaDisplay)
 const drawFitlerButton = draw(filterButton)
+const drawSearchTags = draw(searchTagsDisplay)
 
 // Event Actions
 const addIdea = () => {
@@ -56,11 +63,30 @@ const searchIdeas = event => {
   updatePage()
 }
 
+const addSearchTag = event => {
+  if(event.key != 'Enter') return
+  const searchTerm = event.target.value
+  searchField.value = ''
+  app.addSearchTerm(searchTerm)
+  app.setSearch('')
+  updatePage()
+}
+
+const removeSearchTag = event => {
+  const { use, tag } = event.target.dataset 
+  if(!use && !tag) return
+  app.removeSearchTerm(tag)
+  updatePage()
+}
+
 // Event Action Helpers
 updatePage = () => {
+  const searchTerms = app.getSearchTerms()
   const ideas = app.getIdeas()
   erase(ideaDisplay)
+  erase(searchTagsDisplay)
   drawIdeas(...makeIdeaElements(ideas))
+  drawSearchTags(...makeSearchTags(searchTerms))
 }
 
 // Event Listeners
@@ -68,6 +94,8 @@ saveButton.addEventListener('click', addIdea)
 ideaDisplay.addEventListener('click', handleIdeaAction)
 filterButton.addEventListener('click', filterIdeas)
 searchField.addEventListener('input', searchIdeas)
+searchField.addEventListener('keyup', addSearchTag)
+searchTagsDisplay.addEventListener('click', removeSearchTag)
 
 // Page initialization
 window.onload = updatePage

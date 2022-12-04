@@ -1,12 +1,13 @@
 import { pipe } from 'ramda'
 import { ideaGenerator } from './ideas.js'
-import { searchByTerm } from './search.js'
+import { searchByTerm, searchByTerms } from './search.js'
 import { saveToStorage, retrieveFromStorage } from './storage'
 
 const startApp = () => {
   let ideas = retrieveFromStorage()
   let showFiltered = false
   let searchTerm = ''
+  let searchTerms = []
 
   // interface functions
   const addIdea = (ideaDetails) => {
@@ -25,6 +26,7 @@ const startApp = () => {
     return pipe(
       findByFilter(showFiltered),
       searchByTerm(searchTerm),
+      searchByTerms(searchTerms),
     )(ideas)
   }
 
@@ -50,6 +52,24 @@ const startApp = () => {
     searchTerm = term
   }
 
+  const getSearchTerms = () => {
+    return searchTerms
+  }
+
+  const addSearchTerm = (term) => {
+    const downcasedTerm = term.toLowerCase()
+    const termExists = searchTerms.indexOf(downcasedTerm) > -1
+    if(!termExists) {
+      searchTerms = [...searchTerms, downcasedTerm]
+    }
+  }
+
+  const removeSearchTerm = (termToRemove) => {
+    searchTerms = searchTerms.filter(term => {
+      return term != termToRemove
+    })
+  }
+
   // helper functions
   const findByFilter = (filterStatus) => (ideas) => {
     if(filterStatus) {
@@ -66,6 +86,9 @@ const startApp = () => {
     toggleFiltered,
     getFilterStatus,
     setSearch,
+    getSearchTerms,
+    addSearchTerm,
+    removeSearchTerm,
   }
 }
 

@@ -22,6 +22,26 @@ const makeIdeaElements = (ideas = []) => {
   return ideas.map(makeIdeaElement)
 }
 
+const makeSearchTag = (term) => {
+  const tag = document.createElement('div')
+  tag.classList.add('search-tag')
+
+  const text = document.createElement('p')
+  text.innerHTML = term
+
+  const img = document.createElement('img')
+  img.classList.add('remove-tag')
+  img.setAttribute('data-use', 'remove tag')
+  img.setAttribute('data-tag', term)
+
+  tag.append(text, img)
+
+  return tag
+}
+
+const makeSearchTags = (terms) => {
+  return terms.map(makeSearchTag)
+}
 
 // Helper functions
 const makeHeader = (idea) => {
@@ -77,4 +97,6 @@ module.exports = {
   erase,
   makeIdeaElement,
   makeIdeaElements,
+  makeSearchTag,
+  makeSearchTags,
 }
