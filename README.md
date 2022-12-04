@@ -13,4 +13,4 @@ principles.
 
 Follow the same installation steps as above, then:
 1) Run the tests: `npm test`
-1a) Run the tests in watch mode: `npm run test:watch`
+2) Alternatively, run the tests in watch mode: `npm run test:watch`
