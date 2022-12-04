@@ -1,6 +1,6 @@
 import { pipe } from 'ramda'
 import { ideaGenerator } from './ideas.js'
-import { search as searchByTerm } from './search.js'
+import { searchByTerm } from './search.js'
 
 const startApp = () => {
   let ideas = []

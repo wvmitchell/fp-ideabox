@@ -1,7 +1,7 @@
 import { ideaGenerator } from '../src/js/ideas'
-import { search } from '../src/js/search'
+import { searchByTerm } from '../src/js/search'
 
-describe('search', () => {
+describe('searchByTerm', () => {
   let ideas = [
     ideaGenerator({title: 'one', body: 'the first body'}),
     ideaGenerator({title: 'two', body: 'the second body'}),
@@ -9,35 +9,35 @@ describe('search', () => {
   ]
 
   test('it can search for a full title', () => {
-    const matched = search('one')(ideas)
+    const matched = searchByTerm('one')(ideas)
 
     expect(matched.length).toBe(1)
     expect(matched[0].getTitle()).toBe('one')
   })
 
   test('it can search for a partial match title', () => {
-    const matched = search('tw')(ideas)
+    const matched = searchByTerm('tw')(ideas)
 
     expect(matched.length).toBe(1)
     expect(matched[0].getTitle()).toBe('two')
   })
 
   test('it can search for another partial match title', () => {
-    const matched = search('hre')(ideas)
+    const matched = searchByTerm('hre')(ideas)
 
     expect(matched.length).toBe(1)
     expect(matched[0].getTitle()).toBe('three')
   })
 
   test('it can search title case insensitive', () => {
-    const matched = search('hRe')(ideas)
+    const matched = searchByTerm('hRe')(ideas)
 
     expect(matched.length).toBe(1)
     expect(matched[0].getTitle()).toBe('three')
   })
 
   test('it returns all items when the search is blank', () => {
-    const matched = search('')(ideas)
+    const matched = searchByTerm('')(ideas)
 
     expect(matched.length).toBe(3)
     expect(matched[0].getTitle()).toBe('one')
@@ -46,21 +46,21 @@ describe('search', () => {
   })
 
   test('it can search for a full body', () => {
-    const matched = search('the first body')(ideas)
+    const matched = searchByTerm('the first body')(ideas)
 
     expect(matched.length).toBe(1)
     expect(matched[0].getTitle()).toBe('one')
   })
 
   test('it can search for a partial body', () => {
-    const matched = search('first')(ideas)
+    const matched = searchByTerm('first')(ideas)
 
     expect(matched.length).toBe(1)
     expect(matched[0].getTitle()).toBe('one')
   })
 
   test('it can search for another partial body', () => {
-    const matched = search('sec')(ideas)
+    const matched = searchByTerm('sec')(ideas)
 
     expect(matched.length).toBe(1)
     expect(matched[0].getTitle()).toBe('two')

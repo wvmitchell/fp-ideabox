@@ -1,4 +1,4 @@
-const search = (searchTerm) => (ideas) => {
+const searchByTerm = (searchTerm) => (ideas) => {
   return ideas.filter(idea => {
     const title = idea.getTitle().toLowerCase()
     const body = idea.getBody().toLowerCase()
@@ -8,5 +8,5 @@ const search = (searchTerm) => (ideas) => {
 }
 
 module.exports = {
-  search,
+  searchByTerm,
 }
