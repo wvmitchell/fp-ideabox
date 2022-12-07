@@ -23,6 +23,33 @@ part reflection, part code tour.
 
 ### Pure Functions
 
+There are many different places around the app that utilize pure functions, but
+the space that I was most satisfied with this is in `draw.js`. There are a
+number of utility functions here that have the responisbility of taking in raw
+data, and outputing html elements. By extracting this logic from the
+responsibility of actually updating the page, I was able to make the logic that
+adds things to the page pure, and thus very easy to test. Here's one of those
+functions:
+
+```javascript
+const makeSearchTag = (term) => {
+  const tag = document.createElement('div')
+  tag.classList.add('search-tag')
+
+  const text = document.createElement('p')
+  text.innerHTML = term
+
+  const img = document.createElement('img')
+  img.classList.add('remove-tag')
+  img.setAttribute('data-use', 'remove tag')
+  img.setAttribute('data-tag', term)
+
+  tag.append(text, img)
+
+  return tag
+}
+```
+
 ### Higher Order Functions
 
 ### Closures
