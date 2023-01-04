@@ -52,6 +52,26 @@ const makeSearchTag = (term) => {
 
 ### Higher Order Functions
 
+In multiple places throughout the app I've made use of closures and curried
+functions, which meet the definition of a higher order function. However, my
+most common use case was making using of the built in array prototype methods.
+In this case, I've passed an anonymous function to `.map`, so that I can get the
+data contained in an idea into an object literal, so that I can store the
+information in localstorage.
+
+```javascript
+const saveToStorage = (ideas) => {
+  const ideaData = ideas.map(idea => ({
+    title: idea.getTitle(),
+    body: idea.getBody(),
+    id: idea.getId(),
+    starred: idea.getStarred(),
+  }))
+
+  localStorage.setItem('ideas', JSON.stringify(ideaData))
+}
+```
+
 ### Closures
 
 ### Curried Functions
