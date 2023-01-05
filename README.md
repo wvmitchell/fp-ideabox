@@ -125,6 +125,26 @@ const ideaGenerator = (ideaDetails={}) => {
 
 ### Curried Functions
 
+I was able to make use of curried functions in a few different places, but what
+I'll highlight here is my draw function. By creating a function that takes in a
+parent element and an array of children to append, I was able to make a simple
+DRY implementation of getting things added to the DOM. In going a step further
+and turning this into a curried function, I was able to create one-off functions
+tooled to update specific parts of the DOM.
+
+```javascript
+const draw = (parentElement) => (...childrenElements) => {
+  parentElement.append(...childrenElements)
+}
+
+const searchTagsDisplay = document.getElementById('search-tags')
+const filterButton = document.getElementById('filter')
+const ideaDisplay = document.getElementById('idea-display')
+
+const drawIdeas = draw(ideaDisplay)
+const drawFitlerButton = draw(filterButton)
+const drawSearchTags = draw(searchTagsDisplay)
+```
 
 ### Composition
 
