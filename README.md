@@ -74,7 +74,57 @@ const saveToStorage = (ideas) => {
 
 ### Closures
 
+I made fairly extensive use of closures in this application, and in fact all of
+my business logic is wrapped in a closure. This allowed me to keep my data store
+out of the global state, and protect exacty how it was interacted with. In this
+case, rather than the closure returning a single function that was closed over,
+I returned an object with functions, all of which maintain the scope of the
+closure.
+
+```javascript
+const startApp = () => {
+  let ideas = retrieveFromStorage()
+  let showFiltered = false
+  let searchTerm = ''
+  let searchTerms = []
+
+  ...
+
+  return {
+    addIdea,
+    deleteIdea,
+    getIdeas,
+    toggleStarred,
+    toggleFiltered,
+    getFilterStatus,
+    setSearch,
+    getSearchTerms,
+    addSearchTerm,
+    removeSearchTerm,
+  }
+```
+
+I also represented an idea as a closure. In the same was that I used a closure
+for the main application, this allowed me to define exactly how the data of the
+idea was modified.
+
+```javascript
+const ideaGenerator = (ideaDetails={}) => {
+  let id = ideaDetails.id || uuidv4()
+  let starred = ideaDetails.starred || false;
+
+  return { 
+    getId: () => id,
+    getTitle: () => ideaDetails.title,
+    getBody: () => ideaDetails.body,
+    getStarred: () => starred,
+    toggleStarred: () => starred = !starred,
+  }
+}
+```
+
 ### Curried Functions
+
 
 ### Composition
 
