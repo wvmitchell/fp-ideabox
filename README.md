@@ -204,6 +204,13 @@ const getIdeas = () => {
 
 ### Data Model vs DOM
 
+I built this application initially by focusing exclusively on the Data Model,
+and only considered later how that model would be visually represented and
+manipulated. Thus, there is a very neat separation between my data model and the
+DOM. All of the business logic (data model) lives in, or is used by, `app.js`.
+The DOM accessing and manipulation all happens in `index.js`, which also makes
+use of some drawing utility functions that I created, which live in `draw.js`.
+
 ### JavaScript file types
 
 ### Testing
