@@ -148,6 +148,58 @@ const drawSearchTags = draw(searchTagsDisplay)
 
 ### Composition
 
+It was challenging to find a reasonable use case for composition in an
+application this small, however by adding some additional seach functionality, I
+was able to come up with one. What I realized is that the display of ideas is
+really just a series of filtering operations. Ideas are filtered based off their
+starred status, as well as if they contain the search term in the form. By
+adding 'tag' functionality to the app, I also enabled searching for multiple
+terms at once. These three functions all take two parameters, so by creating
+curried functions, I was able to make use of a pipeline function. The end result
+is actually extremely readable, so I'm happy with the way it turned out.
+
+```javascript
+const findByFilter = (filterStatus) => (ideas) => {
+  if(filterStatus) {
+    return ideas.filter(idea => idea.getStarred())
+  }
+  return ideas
+}
+
+const searchByTerm = (searchTerm = '') => (ideas) => {
+  return ideas.filter(idea => {
+    const title = idea.getTitle().toLowerCase()
+    const body = idea.getBody().toLowerCase()
+    const searchRegExp = new RegExp(searchTerm.toLowerCase())
+    return title.match(searchRegExp) || body.match(searchRegExp) 
+  })
+}
+
+const searchByTerms = (searchTerms = []) => (ideas) => {
+  return ideas.reduce((foundIdeas, idea) => {
+    const title = idea.getTitle().toLowerCase()
+    const body = idea.getBody().toLowerCase()
+    const matchesAllTerms = searchTerms.every(term => {
+      const searchRegExp = new RegExp(term.toLowerCase())
+      return title.match(searchRegExp) || body.match(searchRegExp)
+    })
+
+    if(matchesAllTerms) {
+      return [...foundIdeas, idea]
+    }
+    return foundIdeas
+  }, [])
+}
+
+const getIdeas = () => {
+  return pipe(
+    findByFilter(showFiltered),
+    searchByTerm(searchTerm),
+    searchByTerms(searchTerms),
+  )(ideas)
+}
+```
+
 ## Application Architecture Commentary
 
 ### Data Model vs DOM
