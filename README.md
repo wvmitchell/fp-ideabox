@@ -213,4 +213,19 @@ use of some drawing utility functions that I created, which live in `draw.js`.
 
 ### JavaScript file types
 
+One of the challenges for this project was trying to answer the question, 'where
+do things go?' Ultimately, I feel that there's any number of ways that I _could_
+organize things, so the real goal was to divide things intentionally. With that
+in mind, there are really 3 file types that I have here:
+
+1) The index, which holds onto all my DOM selectors, listeners, and event
+handlers. These could potentially be extrated to their own file, but given that
+there isn't much else in index, that seemed like overkill.
+2) My datastore closures, `app.js` and `ideas.js`. Essential to this divsion was
+wanted to have some obvious place where the business logic lived.
+3) The rest of the files are essentially utilities; `storage.js` is functions
+related to localStorage, `search.js` is functions specifically for searching
+through an array of ideas, and `draw.js` has functions related to drawing DOM
+elements on the page.
+
 ### Testing
