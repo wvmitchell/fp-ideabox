@@ -229,3 +229,10 @@ through an array of ideas, and `draw.js` has functions related to drawing DOM
 elements on the page.
 
 ### Testing
+
+One of the big wins that I found in trying to be more functional with my
+approach was an ease of testing. Because so many of the functions are simply
+input -> output functions with no side effects, writing the tests was
+straightforward. The only file that does not have 100% test coverage is
+`index.js`, which I would probably use Cypress to test effectively, rather than
+Jest, as I have for the rest of the application.
