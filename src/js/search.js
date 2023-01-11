@@ -23,7 +23,15 @@ const searchByTerms = (searchTerms = []) => (ideas) => {
   }, [])
 }
 
+const findByFilter = (filterStatus) => (ideas) => {
+  if(filterStatus) {
+    return ideas.filter(idea => idea.getStarred())
+  }
+  return ideas
+}
+
 module.exports = {
   searchByTerm,
   searchByTerms,
+  findByFilter,
 }

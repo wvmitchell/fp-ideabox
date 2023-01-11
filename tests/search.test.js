@@ -1,5 +1,5 @@
 import { ideaGenerator } from '../src/js/ideas'
-import { searchByTerm, searchByTerms } from '../src/js/search'
+import { searchByTerm, searchByTerms, findByFilter } from '../src/js/search'
 
 describe('searchByTerm', () => {
   let ideas = [
@@ -105,5 +105,21 @@ describe('searchByTerms', () => {
     const matched = searchByTerms()(ideas)
 
     expect(matched.length).toBe(4)
+  })
+})
+
+describe('findByFilter', () => {
+  let ideas = [
+    ideaGenerator({title: 'one', body: 'the first body'}),
+    ideaGenerator({title: 'two', body: 'the second body'}),
+    ideaGenerator({title: 'three', body: 'the third body'}),
+    ideaGenerator({title: 'two', body: 'mystery', starred: true}),
+  ]
+
+  it('can find a starred idea', () => {
+    const matched = findByFilter(true)(ideas)
+
+    expect(matched.length).toBe(1)
+    expect(matched[0].getBody()).toBe('mystery')
   })
 })

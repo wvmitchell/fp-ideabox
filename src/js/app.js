@@ -1,6 +1,6 @@
 import { pipe } from 'ramda'
 import { ideaGenerator } from './ideas.js'
-import { searchByTerm, searchByTerms } from './search.js'
+import { searchByTerm, searchByTerms, findByFilter } from './search.js'
 import { saveToStorage, retrieveFromStorage } from './storage'
 
 const startApp = () => {
@@ -68,14 +68,6 @@ const startApp = () => {
     searchTerms = searchTerms.filter(term => {
       return term != termToRemove
     })
-  }
-
-  // helper functions
-  const findByFilter = (filterStatus) => (ideas) => {
-    if(filterStatus) {
-      return ideas.filter(idea => idea.getStarred())
-    }
-    return ideas
   }
 
   return {
