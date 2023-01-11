@@ -202,6 +202,12 @@ const getIdeas = () => {
 
 ## Application Architecture Commentary
 
+### Data Model
+
+At a high level, I wanted my Data Model to be an array of objects, each object
+representing an idea. Not wanting to keep this as a global variable, I opted to
+keep that array inside a closure.
+
 ### Data Model vs DOM
 
 I built this application initially by focusing exclusively on the Data Model,
